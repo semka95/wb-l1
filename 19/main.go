@@ -6,8 +6,10 @@ import (
 )
 
 func reverseString(str string) string {
+	// преобразовываем строку в слайс рун
 	runes := []rune(str)
 	var b strings.Builder
+
 	for i := len(runes) - 1; i >= 0; i-- {
 		b.WriteRune(runes[i])
 	}

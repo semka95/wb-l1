@@ -6,31 +6,7 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// BinarySearch is implementation of binary search algorithm, it returns
-// index of item if it was found and -1 if item was not found, this is
-// implementation from the book
-func BinarySearch(list []int, item int) int {
-	var low, mid, guess int
-	high := len(list) - 1
-
-	for low <= high {
-		mid = (low + high) / 2
-		guess = list[mid]
-		if guess == item {
-			return mid
-		}
-		if guess > item {
-			high = mid - 1
-		} else {
-			low = mid + 1
-		}
-	}
-	return -1
-}
-
-// GBinarySearch is generic implementation of binary search algorithm,
-// it returns index of item if it was found and -1 if item was not found
-func GBinarySearch[T constraints.Ordered](list []T, item T) int {
+func BinarySearch[T constraints.Ordered](list []T, item T) int {
 	var low, mid int
 	var guess T
 	high := len(list) - 1
@@ -58,7 +34,7 @@ func main() {
 	fmt.Println(BinarySearch(myList, 9))
 	fmt.Println(BinarySearch(myList, -1))
 
-	fmt.Println(GBinarySearch(myList, 7))
-	fmt.Println(GBinarySearch(myFloatList, 6.1))
-	fmt.Println(GBinarySearch(myStringList, "fav"))
+	fmt.Println(BinarySearch(myList, 7))
+	fmt.Println(BinarySearch(myFloatList, 6.1))
+	fmt.Println(BinarySearch(myStringList, "fav"))
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// тип, который нужно адаптировать под Money интерфейс
 type Currency struct {
 	amount int
 }
@@ -16,15 +17,18 @@ func (c *Currency) SetUSD(amount int) {
 	c.amount = amount
 }
 
+// целевой интерфейс
 type Money interface {
 	GetRUB() int
 	SetRUB(int)
 }
 
+// адаптер
 type MoneyAdapter struct {
 	curr Currency
 }
 
+// преобразование функций
 func (m *MoneyAdapter) GetRUB() int {
 	return m.curr.GetUSD() * 300
 }

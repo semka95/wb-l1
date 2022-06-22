@@ -4,9 +4,11 @@ import "fmt"
 
 func main() {
 	arr := []string{"cat", "cat", "dog", "cat", "tree"}
+	fmt.Printf("set: %v\n", arr)
 
 	m := make(map[string]struct{})
 	res := make([]string, 0)
+
 	for _, v := range arr {
 		if _, ok := m[v]; ok {
 			continue
@@ -15,5 +17,5 @@ func main() {
 		m[v] = struct{}{}
 	}
 
-	fmt.Println(res)
+	fmt.Printf("subset: %v\n", res)
 }
