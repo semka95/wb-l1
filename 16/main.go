@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// реализация быстрой сортировки из грокаем алгоритмы
 func quickSort(arr []int) []int {
 	if len(arr) < 2 {
 		return arr

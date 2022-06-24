@@ -3,56 +3,11 @@ package main
 import (
 	"fmt"
 	"sync"
-	"sync/atomic"
 )
 
 type Counter interface {
 	Add()
 	Get() int64
-}
-
-// счетчик с использование мьютексов
-type mutexCounter struct {
-	counter int64
-	mutex   *sync.RWMutex
-}
-
-func newMutexStruct() *mutexCounter {
-	return &mutexCounter{
-		counter: 0,
-		mutex:   &sync.RWMutex{},
-	}
-}
-
-func (m *mutexCounter) Add() {
-	m.mutex.Lock()
-	defer m.mutex.Unlock()
-	m.counter++
-}
-
-func (m *mutexCounter) Get() int64 {
-	m.mutex.RLock()
-	defer m.mutex.RUnlock()
-	return m.counter
-}
-
-// счетчик с использованием атомарных операций
-type atomicCounter struct {
-	counter int64
-}
-
-func newAtomicStruct() *atomicCounter {
-	return &atomicCounter{
-		counter: 0,
-	}
-}
-
-func (a *atomicCounter) Add() {
-	atomic.AddInt64(&a.counter, 1)
-}
-
-func (a *atomicCounter) Get() int64 {
-	return atomic.LoadInt64(&a.counter)
 }
 
 var workersNum = 20

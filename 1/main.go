@@ -25,8 +25,8 @@ type Action struct {
 	Name       string
 	SecondName string
 	Address    string
+	H          Human
 	Human
-	H Human
 }
 
 func (a *Action) SetName(name string) {

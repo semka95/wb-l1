@@ -116,7 +116,7 @@ func main() {
 	g.wg.Wait()
 	cancel()
 
-	// cancel context
+	// canceling context
 	fmt.Println("\nContext cancel")
 	ctx, cancel = context.WithCancel(context.Background())
 	ch = make(chan int, 1)
@@ -131,7 +131,7 @@ func main() {
 	close(ch)
 	g.wg.Wait()
 
-	// stop channel
+	// stopping channel
 	fmt.Println("\nStop channel")
 	ch = make(chan int, 1)
 	stop := make(chan struct{})
@@ -163,7 +163,7 @@ func main() {
 	cancel()
 	g.wg.Wait()
 
-	// close channel
+	// closing channel
 	fmt.Println("\nClosing channel")
 	ch = make(chan int, 1)
 	ctx, cancel = context.WithCancel(context.Background())
