@@ -17,7 +17,7 @@ func startWorker(in <-chan int, wg *sync.WaitGroup) {
 }
 
 // вариант с использование воркеров
-func concurrentSquareWorkers() {
+func concurrentSquareWorkers(nums []int) {
 	wg := &sync.WaitGroup{}
 	wg.Add(workersNum)
 	input := make(chan int, 2)
@@ -28,7 +28,6 @@ func concurrentSquareWorkers() {
 	}
 
 	// отправляем данные в канал
-	nums := []int{2, 4, 6, 8, 10}
 	for _, v := range nums {
 		input <- v
 	}
@@ -39,9 +38,8 @@ func concurrentSquareWorkers() {
 }
 
 // вариант с запуском отдельной горутины на элемент
-func concurrentSquare() {
+func concurrentSquare(nums []int) {
 	wg := &sync.WaitGroup{}
-	nums := []int{2, 4, 6, 8, 10}
 
 	for _, v := range nums {
 		wg.Add(1)
@@ -55,7 +53,7 @@ func concurrentSquare() {
 }
 
 func main() {
-	concurrentSquare()
-
-	concurrentSquareWorkers()
+	nums := []int{2, 4, 6, 8, 10}
+	concurrentSquare(nums)
+	concurrentSquareWorkers(nums)
 }
